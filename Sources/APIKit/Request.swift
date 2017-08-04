@@ -8,7 +8,7 @@ import Result
 /// - `var method: HTTPMethod`
 /// - `var path: String`
 /// - `func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response`
-public protocol Request {
+public protocol Request: RequestSerializable, ErrorHandleable {
     /// The response type associated with the request type.
     associatedtype Response
 
@@ -90,53 +90,53 @@ public extension Request {
         return JSONDataParser(readingOptions: [])
     }
 
-    public func intercept(urlRequest: URLRequest) throws -> URLRequest {
-        return urlRequest
-    }
+//    public func intercept(urlRequest: URLRequest) throws -> URLRequest {
+//        return urlRequest
+//    }
+//
+//    public func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
+//        guard 200..<300 ~= urlResponse.statusCode else {
+//            throw ResponseError.unacceptableStatusCode(urlResponse.statusCode)
+//        }
+//        return object
+//    }
 
-    public func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
-        guard 200..<300 ~= urlResponse.statusCode else {
-            throw ResponseError.unacceptableStatusCode(urlResponse.statusCode)
-        }
-        return object
-    }
-
-    /// Builds `URLRequest` from properties of `self`.
-    /// - Throws: `RequestError`, `Error`
-    public func buildURLRequest() throws -> URLRequest {
-        let url = path.isEmpty ? baseURL : baseURL.appendingPathComponent(path)
-        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            throw RequestError.invalidBaseURL(baseURL)
-        }
-
-        var urlRequest = URLRequest(url: url)
-
-        if let queryParameters = queryParameters, !queryParameters.isEmpty {
-            components.percentEncodedQuery = URLEncodedSerialization.string(from: queryParameters)
-        }
-
-        if let bodyParameters = bodyParameters {
-            urlRequest.setValue(bodyParameters.contentType, forHTTPHeaderField: "Content-Type")
-
-            switch try bodyParameters.buildEntity() {
-            case .data(let data):
-                urlRequest.httpBody = data
-
-            case .inputStream(let inputStream):
-                urlRequest.httpBodyStream = inputStream
-            }
-        }
-
-        urlRequest.url = components.url
-        urlRequest.httpMethod = method.rawValue
-        urlRequest.setValue(dataParser.contentType, forHTTPHeaderField: "Accept")
-
-        headerFields.forEach { key, value in
-            urlRequest.setValue(value, forHTTPHeaderField: key)
-        }
-
-        return (try intercept(urlRequest: urlRequest) as URLRequest)
-    }
+//    /// Builds `URLRequest` from properties of `self`.
+//    /// - Throws: `RequestError`, `Error`
+//    public func buildURLRequest() throws -> URLRequest {
+//        let url = path.isEmpty ? baseURL : baseURL.appendingPathComponent(path)
+//        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+//            throw RequestError.invalidBaseURL(baseURL)
+//        }
+//
+//        var urlRequest = URLRequest(url: url)
+//
+//        if let queryParameters = queryParameters, !queryParameters.isEmpty {
+//            components.percentEncodedQuery = URLEncodedSerialization.string(from: queryParameters)
+//        }
+//
+//        if let bodyParameters = bodyParameters {
+//            urlRequest.setValue(bodyParameters.contentType, forHTTPHeaderField: "Content-Type")
+//
+//            switch try bodyParameters.buildEntity() {
+//            case .data(let data):
+//                urlRequest.httpBody = data
+//
+//            case .inputStream(let inputStream):
+//                urlRequest.httpBodyStream = inputStream
+//            }
+//        }
+//
+//        urlRequest.url = components.url
+//        urlRequest.httpMethod = method.rawValue
+//        urlRequest.setValue(dataParser.contentType, forHTTPHeaderField: "Accept")
+//
+//        headerFields.forEach { key, value in
+//            urlRequest.setValue(value, forHTTPHeaderField: key)
+//        }
+//
+//        return (try intercept(urlRequest: urlRequest) as URLRequest)
+//    }
 
     /// Builds `Response` from response `Data`.
     /// - Throws: `ResponseError`, `Error`
