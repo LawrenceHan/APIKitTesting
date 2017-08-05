@@ -198,7 +198,7 @@ extension RequestSerializable where Self: APIKit.Request {
     }
 }
 
-extension ErrorHandleable {
+extension Interceptable {
     func intercept(urlRequest: URLRequest) throws -> URLRequest {
         print("Extension: \(#function)")
         return urlRequest
@@ -210,6 +210,12 @@ extension ErrorHandleable {
             throw ResponseError.unacceptableStatusCode(urlResponse.statusCode)
         }
         return object
+    }
+}
+
+extension ErrorHandleable {
+    func handle(error: ErrorHandleable) {
+        print("I'm a global error handler")
     }
 }
 

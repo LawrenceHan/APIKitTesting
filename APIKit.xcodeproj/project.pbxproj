@@ -13,7 +13,8 @@
 		02C1490B1F322FB4004A5B92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C1490A1F322FB4004A5B92 /* Assets.xcassets */; };
 		02C1490E1F322FB4004A5B92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C1490C1F322FB4004A5B92 /* LaunchScreen.storyboard */; };
 		02E3DE411F34CBE40099E4F8 /* RequestSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E3DE401F34CBE40099E4F8 /* RequestSerializable.swift */; };
-		02E3DE4D1F34D2CB0099E4F8 /* ErrorHandleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E3DE4C1F34D2CB0099E4F8 /* ErrorHandleable.swift */; };
+		02E3DE4D1F34D2CB0099E4F8 /* Interceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E3DE4C1F34D2CB0099E4F8 /* Interceptable.swift */; };
+		02E3DE511F361C010099E4F8 /* ErrorHandleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E3DE501F361C010099E4F8 /* ErrorHandleable.swift */; };
 		141F12201C1C9ABE0026D415 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD5115241B1FFBA900514240 /* Result.framework */; };
 		141F12311C1C9AC70026D415 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD5115241B1FFBA900514240 /* Result.framework */; };
 		141F12361C1C9AC70026D415 /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = CD5115241B1FFBA900514240 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -96,7 +97,8 @@
 		02C1490D1F322FB4004A5B92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02C1490F1F322FB4004A5B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02E3DE401F34CBE40099E4F8 /* RequestSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSerializable.swift; sourceTree = "<group>"; };
-		02E3DE4C1F34D2CB0099E4F8 /* ErrorHandleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandleable.swift; sourceTree = "<group>"; };
+		02E3DE4C1F34D2CB0099E4F8 /* Interceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptable.swift; sourceTree = "<group>"; };
+		02E3DE501F361C010099E4F8 /* ErrorHandleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandleable.swift; sourceTree = "<group>"; };
 		141F120F1C1C96820026D415 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Base.xcconfig; path = Configurations/Base.xcconfig; sourceTree = "<group>"; };
 		141F12101C1C96820026D415 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Configurations/Debug.xcconfig; sourceTree = "<group>"; };
 		141F12111C1C96820026D415 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Configurations/Release.xcconfig; sourceTree = "<group>"; };
@@ -343,7 +345,8 @@
 				7F7048C81D9D89BE003C99F6 /* HTTPMethod.swift */,
 				7F7048CA1D9D89BE003C99F6 /* Request.swift */,
 				02E3DE401F34CBE40099E4F8 /* RequestSerializable.swift */,
-				02E3DE4C1F34D2CB0099E4F8 /* ErrorHandleable.swift */,
+				02E3DE4C1F34D2CB0099E4F8 /* Interceptable.swift */,
+				02E3DE501F361C010099E4F8 /* ErrorHandleable.swift */,
 				7F7048CB1D9D89BE003C99F6 /* Session.swift */,
 				7F7048CC1D9D89BE003C99F6 /* Unavailable.swift */,
 				7F85FB8B1C9D317300CEE132 /* SessionAdapter */,
@@ -618,6 +621,7 @@
 			files = (
 				7F7048D31D9D89BE003C99F6 /* Unavailable.swift in Sources */,
 				7F7048D11D9D89BE003C99F6 /* Request.swift in Sources */,
+				02E3DE511F361C010099E4F8 /* ErrorHandleable.swift in Sources */,
 				7F7048E81D9D8A08003C99F6 /* DataParser.swift in Sources */,
 				7F7048CE1D9D89BE003C99F6 /* CallbackQueue.swift in Sources */,
 				7F7048DE1D9D89FB003C99F6 /* AbstractInputStream.m in Sources */,
@@ -627,7 +631,7 @@
 				7F7048D21D9D89BE003C99F6 /* Session.swift in Sources */,
 				7F7048E01D9D89FB003C99F6 /* Data+InputStream.swift in Sources */,
 				7F7048DF1D9D89FB003C99F6 /* BodyParameters.swift in Sources */,
-				02E3DE4D1F34D2CB0099E4F8 /* ErrorHandleable.swift in Sources */,
+				02E3DE4D1F34D2CB0099E4F8 /* Interceptable.swift in Sources */,
 				7F7048E21D9D89FB003C99F6 /* JSONBodyParameters.swift in Sources */,
 				02E3DE411F34CBE40099E4F8 /* RequestSerializable.swift in Sources */,
 				7F7048D61D9D89F2003C99F6 /* SessionAdapter.swift in Sources */,

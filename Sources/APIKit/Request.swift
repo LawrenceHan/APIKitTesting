@@ -8,7 +8,7 @@ import Result
 /// - `var method: HTTPMethod`
 /// - `var path: String`
 /// - `func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response`
-public protocol Request: RequestSerializable, ErrorHandleable {
+public protocol Request: RequestSerializable, Interceptable {
     /// The response type associated with the request type.
     associatedtype Response
 
