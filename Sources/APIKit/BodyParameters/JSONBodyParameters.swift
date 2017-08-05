@@ -10,7 +10,6 @@ public struct JSONBodyParameters: BodyParameters {
 
     /// Returns `JSONBodyParameters` that is initialized with JSON object and writing options.
     public init(JSONObject: Any, writingOptions: JSONSerialization.WritingOptions = []) {
-        print("JSONBodyParameters init")
         self.JSONObject = JSONObject
         self.writingOptions = writingOptions
     }

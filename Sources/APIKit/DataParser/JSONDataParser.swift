@@ -7,7 +7,6 @@ public class JSONDataParser: DataParser {
 
     /// Returns `JSONDataParser` with the reading options.
     public init(readingOptions: JSONSerialization.ReadingOptions) {
-        print("JSONDataParser init")
         self.readingOptions = readingOptions
     }
 
