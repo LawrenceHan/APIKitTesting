@@ -10,7 +10,7 @@ import Result
 /// - `func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response`
 public protocol Request: RequestSerializable, ErrorHandleable {
     /// The response type associated with the request type.
-    associatedtype Response: Decodable
+    associatedtype Response
 
     /// The base URL.
     var baseURL: URL { get }
@@ -42,6 +42,11 @@ public protocol Request: RequestSerializable, ErrorHandleable {
 
     /// The parser object that states `Content-Type` to accept and parses response body.
     var dataParser: DataParser { get }
+
+    /// Build `Response` instance from raw response object. This method is called after
+    /// `intercept(object:urlResponse:)` if it does not throw any error.
+    /// - Throws: `Error`
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response
 }
 
 public extension Request {
@@ -78,6 +83,6 @@ public extension Request {
     public func parse(data: Data, urlResponse: HTTPURLResponse) throws -> Response {
         let parsedObject = try dataParser.parse(data: data)
         let passedObject = try intercept(object: parsedObject, urlResponse: urlResponse)
-        return try Response.parse(json: passedObject)
+        return try response(from: passedObject, urlResponse: urlResponse)
     }
 }
