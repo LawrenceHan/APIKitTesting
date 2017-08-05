@@ -140,7 +140,7 @@ struct GetRateLimitRequest: GitHubRequest {
 //        
 //        return (try intercept(urlRequest: urlRequest) as URLRequest)
 //    }
-//    
+    
 //    func intercept(urlRequest: URLRequest) throws -> URLRequest {
 //        print("Sub-Protocol: \(#function)")
 //        return urlRequest
@@ -214,6 +214,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let request = GetRateLimitRequest()
+        
+        Session.send(request) { result in
+            switch result {
+            case .success(let rateLimit):
+                print("count: \(rateLimit.count)")
+                print("reset: \(rateLimit.resetDate)")
+                
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
         
         Session.send(request) { result in
             switch result {
