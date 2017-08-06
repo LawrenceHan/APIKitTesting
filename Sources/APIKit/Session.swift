@@ -64,7 +64,7 @@ open class Session {
         } catch {
             callbackQueue.execute {
                 let e = SessionTaskError.requestError(error)
-                self.adapter.handle(error: e)
+                request.handle(error: e)
                 handler(.failure(e))
             }
             return nil
@@ -91,7 +91,7 @@ open class Session {
             callbackQueue.execute {
                 switch result {
                 case .failure(let e):
-                    self.adapter.handle(error: e)
+                    request.handle(error: e)
                 default: break
                 }
                 handler(result)

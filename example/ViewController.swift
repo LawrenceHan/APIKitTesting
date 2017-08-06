@@ -69,6 +69,10 @@ extension GitHubRequest {
         }
         return object
     }
+    
+    func handle(error: SessionTaskError) {
+        print("Sub-Protocol: \(#function)")
+    }
 }
 
 //: Step 2: Create model object
@@ -157,6 +161,10 @@ struct GetRateLimitRequest: GitHubRequest {
         }
         return object
     }
+    
+    func handle(error: SessionTaskError) {
+        print("Final-Protocol: \(#function)")
+    }
 }
 
 // MARK: - 第三级别
@@ -213,9 +221,9 @@ extension Interceptable {
     }
 }
 
-extension ErrorHandleable {
-    func handle(error: ErrorHandleable) {
-        print("I'm a global error handler")
+public extension ErrorHandleable {
+    func handle(error: SessionTaskError) {
+        print("Extension: \(#function)")
     }
 }
 
